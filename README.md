@@ -1,4 +1,4 @@
-# bonsai-workflows
+# Bonsai-Workflows
 
 This repository contains Bonsai workflows organized into three main categories:
 
