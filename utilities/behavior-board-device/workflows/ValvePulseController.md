@@ -33,4 +33,4 @@ This workflow exposes properties that allow a user to configure the device behav
 ### Bonsai:
 
 - [Harp.Behavior](https://www.nuget.org/packages/Harp.Behavior)
-- [BehaviorBoard.bonsai](utilities\behavior-board-device\workflows\BehaviorBoard.bonsai) should be placed in your workflow
+- [BehaviorBoard.bonsai](BehaviorBoard.bonsai) should be placed in your workflow
