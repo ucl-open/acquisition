@@ -4,7 +4,7 @@ This module configures an existing [Harp Behavior](https://github.com/harp-tech/
 
 ## Bonsai Workflow
 
-<img src="../assets/ValvePulseController.svg" alt="workflow" width="500">
+<img src="./assets/ValvePulseController.svg" alt="workflow" width="500">
 
 ## Properties
 
