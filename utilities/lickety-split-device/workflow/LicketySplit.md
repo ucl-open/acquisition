@@ -2,11 +2,11 @@
 
 This module interfaces and configures a [LicketySplit](https://allenneuraldynamics.github.io/Bonsai.AllenNeuralDynamics/harp_devices_spec/Harp_LicketySplit.html) device by Allen Neural Dynamics:
 
-<img src="./assets/image.png" alt="LicketySplit" width="500">
+<img src="../assets/image.png" alt="LicketySplit" width="500">
 
 ## Bonsai Workflow
 
-<img src="./assets/LicketySplit.svg" alt="workflow" width="500">
+<img src="../assets/LicketySplit.svg" alt="workflow" width="500">
 
 ## Properties
 The properties of this workflow allow the user to configure device parameters and set the name of shared `Subjects` to either publish or subscribe to as an interface between your broader Bonsai workflow and the device.
