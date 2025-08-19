@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.8.5"
+<WorkflowBuilder Version="2.9.0"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:p1="clr-namespace:System.Reactive;assembly=System.Reactive.Core"
@@ -7,13 +7,22 @@
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
+      <Expression xsi:type="Annotation">
+        <Text><![CDATA[This is a BehaviourSubject node that can be used to replicate the rest of the nodes in this line without having to repeat them, can be reused at appropriate places in larger workflows]]></Text>
+      </Expression>
       <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p1:Unit">
         <rx:Name>TriggerOn</rx:Name>
+      </Expression>
+      <Expression xsi:type="Annotation">
+        <Text><![CDATA[Set the boolean to True to turn the LEDs on via communication with the Arduino]]></Text>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="BooleanProperty">
           <Value>true</Value>
         </Combinator>
+      </Expression>
+      <Expression xsi:type="Annotation">
+        <Text><![CDATA[Set the pin and COM port for the respective appropriate pin to control LEDs on the Arduino board, and the port for whichever port the Arduino is plugged into]]></Text>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="ard:DigitalOutput">
@@ -21,13 +30,22 @@
           <ard:Pin>7</ard:Pin>
         </Combinator>
       </Expression>
+      <Expression xsi:type="Annotation">
+        <Text><![CDATA[This is a BehaviourSubject node that can be used to replicate the rest of the nodes in this line without having to repeat them, can be reused at appropriate places in larger workflows]]></Text>
+      </Expression>
       <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p1:Unit">
         <rx:Name>TriggerOff</rx:Name>
+      </Expression>
+      <Expression xsi:type="Annotation">
+        <Text><![CDATA[Set the boolean to False to turn the LEDs off via communication with the Arduino]]></Text>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="BooleanProperty">
           <Value>false</Value>
         </Combinator>
+      </Expression>
+      <Expression xsi:type="Annotation">
+        <Text><![CDATA[Set the pin and COM port for the respective appropriate pin to control LEDs on the Arduino board, and the port for whichever port the Arduino is plugged into]]></Text>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="ard:DigitalOutput">
@@ -38,9 +56,15 @@
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
-      <Edge From="1" To="2" Label="Source1" />
-      <Edge From="3" To="4" Label="Source1" />
-      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="1" To="3" Label="Source1" />
+      <Edge From="2" To="3" Label="Source2" />
+      <Edge From="3" To="5" Label="Source1" />
+      <Edge From="4" To="5" Label="Source2" />
+      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="7" To="9" Label="Source1" />
+      <Edge From="8" To="9" Label="Source2" />
+      <Edge From="9" To="11" Label="Source1" />
+      <Edge From="10" To="11" Label="Source2" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

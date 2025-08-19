@@ -1,11 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.8.5"
+<WorkflowBuilder Version="2.9.0"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
-                 xmlns:mx="clr-namespace:Bonsai.DAQmx;assembly=Bonsai.DAQmx"
+                 xmlns:p1="clr-namespace:Bonsai.DAQmx;assembly=Bonsai.DAQmx"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
+      <Expression xsi:type="Annotation">
+        <Text><![CDATA[Set the waveform parameters to something of your choice to check you can move both X and Y galvos using the DAQ from Bonsai ]]></Text>
+      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="dsp:FunctionGenerator">
           <dsp:BufferLength>441</dsp:BufferLength>
@@ -17,46 +20,55 @@
           <dsp:Phase>0</dsp:Phase>
         </Combinator>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="mx:AnalogOutput">
-          <mx:SignalSource />
-          <mx:SampleRate>5000</mx:SampleRate>
-          <mx:ActiveEdge>Rising</mx:ActiveEdge>
-          <mx:SampleMode>ContinuousSamples</mx:SampleMode>
-          <mx:BufferSize>1000</mx:BufferSize>
-          <mx:Channels>
-            <mx:AnalogOutputChannelConfiguration>
-              <mx:ChannelName />
-              <mx:MinimumValue>-10</mx:MinimumValue>
-              <mx:MaximumValue>10</mx:MaximumValue>
-              <mx:PhysicalChannel>Dev1/ao0</mx:PhysicalChannel>
-              <mx:VoltageUnits>Volts</mx:VoltageUnits>
-            </mx:AnalogOutputChannelConfiguration>
-          </mx:Channels>
-        </Combinator>
+      <Expression xsi:type="Annotation">
+        <Text><![CDATA[Set this to the channel on the DAQ connected to either X or Y galvo for the waveform output]]></Text>
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="mx:AnalogOutput">
-          <mx:SignalSource />
-          <mx:SampleRate>5000</mx:SampleRate>
-          <mx:ActiveEdge>Rising</mx:ActiveEdge>
-          <mx:SampleMode>ContinuousSamples</mx:SampleMode>
-          <mx:BufferSize>1000</mx:BufferSize>
-          <mx:Channels>
-            <mx:AnalogOutputChannelConfiguration>
-              <mx:ChannelName />
-              <mx:MinimumValue>-10</mx:MinimumValue>
-              <mx:MaximumValue>10</mx:MaximumValue>
-              <mx:PhysicalChannel>Dev1/ao1</mx:PhysicalChannel>
-              <mx:VoltageUnits>Volts</mx:VoltageUnits>
-            </mx:AnalogOutputChannelConfiguration>
-          </mx:Channels>
+        <Combinator xsi:type="p1:AnalogOutput">
+          <p1:SignalSource />
+          <p1:SampleRate>5000</p1:SampleRate>
+          <p1:ActiveEdge>Rising</p1:ActiveEdge>
+          <p1:SampleMode>ContinuousSamples</p1:SampleMode>
+          <p1:BufferSize>1000</p1:BufferSize>
+          <p1:Channels>
+            <p1:AnalogOutputChannelConfiguration>
+              <p1:ChannelName />
+              <p1:MinimumValue>-10</p1:MinimumValue>
+              <p1:MaximumValue>10</p1:MaximumValue>
+              <p1:PhysicalChannel>Dev1/ao0</p1:PhysicalChannel>
+              <p1:VoltageUnits>Volts</p1:VoltageUnits>
+            </p1:AnalogOutputChannelConfiguration>
+          </p1:Channels>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Annotation">
+        <Text><![CDATA[Set this to the channel on the DAQ connected to either X or Y galvo for the waveform output]]></Text>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:AnalogOutput">
+          <p1:SignalSource />
+          <p1:SampleRate>5000</p1:SampleRate>
+          <p1:ActiveEdge>Rising</p1:ActiveEdge>
+          <p1:SampleMode>ContinuousSamples</p1:SampleMode>
+          <p1:BufferSize>1000</p1:BufferSize>
+          <p1:Channels>
+            <p1:AnalogOutputChannelConfiguration>
+              <p1:ChannelName />
+              <p1:MinimumValue>-10</p1:MinimumValue>
+              <p1:MaximumValue>10</p1:MaximumValue>
+              <p1:PhysicalChannel>Dev1/ao1</p1:PhysicalChannel>
+              <p1:VoltageUnits>Volts</p1:VoltageUnits>
+            </p1:AnalogOutputChannelConfiguration>
+          </p1:Channels>
         </Combinator>
       </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
-      <Edge From="0" To="2" Label="Source1" />
+      <Edge From="1" To="3" Label="Source1" />
+      <Edge From="1" To="5" Label="Source1" />
+      <Edge From="2" To="3" Label="Source2" />
+      <Edge From="4" To="5" Label="Source2" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
