@@ -4,7 +4,7 @@
 The purpose of this workflow is to track the total distance moved by a running wheel.
 
 ## Bonsai Workflow
-When this workflow first receives events from a HARP behavior board, it enables the quadrature encoder and resets the count to zero. It then filters the events for analog inputs, selects the quadrature encoder output, and converts the output from ticks to distance in centimeters. The distance in centimeters is the final output of the workflow.
+When this workflow first receives events from a [HARP behavior board](https://github.com/harp-tech/device.behavior) that is connected to a quadrature encoder, it enables the encoder and resets the count to zero. It then filters the events for analog inputs, selects the quadrature encoder output, and converts the output from ticks to distance in centimeters. The distance in centimeters is the final output of the workflow.
 
 <img src="running-wheel.png" alt="workflow" width="400">
 
@@ -15,7 +15,7 @@ The properties of this workflow allow the user to define the tick counts per rev
 | **Property Name**       | **Input/Output** | **Description**                                                           |
 |-------------------------|------------------|---------------------------------------------------------------------------|
 | `EventsSubjectName`     | Input            | The name of the subject that receives event messages from the device.     |
-| `WheelDistance(cm)`     | Output           | The total distance the wheel has moved, in cm.                            |
+| `WheelDistance(cm)`     | Output           | The total distance the wheel has moved in centimeters.                    |
 
 ### Configuration Parameters
 | **Property Name**       | **Input/Output** | **Description**                                                           |
