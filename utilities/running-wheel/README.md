@@ -9,7 +9,7 @@ When this workflow first receives events from a [HARP behavior board](https://gi
 <img src="running-wheel.png" alt="workflow" width="400">
 
 ## Properties
-The properties of this workflow allow the user to define the tick counts per revolution of the encoder, as well as the wheel distance in millimeters. These will be used to convert ticks to distance in centimeters. Note that the Kubler type 05.2400.1122.1024 quadrature encoders encode 1024 counts per revolution, and the HARP board's quadrature counter uses 4x decoding (it counts the rising and falling edge of channel A and channel B), giving a total CountsPerRev of 4096.
+The properties of this workflow allow the user to define the tick counts per revolution of the encoder, as well as the wheel diameter in millimeters. These will be used to convert ticks to distance in centimeters. Note that the Kubler type 05.2400.1122.1024 quadrature encoders encode 1024 counts per revolution, and the HARP board's quadrature counter uses 4x decoding (it counts the rising and falling edge of channel A and channel B), giving a total counts per revolution of 4096.
 
 ### Input and Output `Subjects`
 | **Property Name**       | **Input/Output** | **Description**                                                           |
