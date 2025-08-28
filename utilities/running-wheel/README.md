@@ -19,13 +19,13 @@ The properties of this workflow allow the user to define the encoder resolution 
 | **Property Name**       | **Input/Output** | **Description**                                                           |
 |-------------------------|------------------|---------------------------------------------------------------------------|
 | `EventsSubjectName`     | Input            | The name of the subject that receives event messages from the device.     |
-| `WheelDistance(cm)`     | Output           | The total distance the wheel has moved in centimeters.                    |
+| `WheelDistance(cm)`     | Output           | The total distance the wheel has moved (in centimeters).                    |
 
 ### Configuration Parameters
 | **Property Name**       | **Input/Output** | **Description**                                                           |
 |-------------------------|------------------|---------------------------------------------------------------------------|
 | `CountsPerRev`          | Input            | The tick counts per revolution of the wheel.                              |
-| `WheelDiameter(mm)`     | Input            | The wheel diameter in millimeters.                                        |
+| `WheelDiameter(mm)`     | Input            | The wheel diameter (in millimeters).                                        |
 
 ## Dependencies
 ### Bonsai:
