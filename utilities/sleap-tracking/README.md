@@ -1,10 +1,10 @@
 # Live Sleap Tracking Workflow 
 
 ### Purpose
-The purpose of this workflow is to track the pose of a mouse using live Sleap tracking.
+The purpose of this workflow is to do live Sleap tracking of animal poses.
 
 ## Bonsai Workflow
-This workflow accepts a pre-trained Sleap model as input and uses it to track the pose of a mouse from a series of image frames. It ouputs the x position, y position, and confidence of each body part for each frame. The pre-trained model should have the following body part instances: Nose, LeftEar, RightEar, Body, TailBase.
+This workflow accepts a pre-trained Sleap model and a video stream as input and ouputs the x position, y position, and confidence of each model body part for each frame.
 
 <img src="sleap-tracking.png" alt="workflow" width="400">
 

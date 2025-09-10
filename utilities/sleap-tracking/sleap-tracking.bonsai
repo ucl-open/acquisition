@@ -1,14 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.9.0"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xmlns:sleap="clr-namespace:Bonsai.Sleap;assembly=Bonsai.Sleap"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
-                 xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
+                 xmlns:sleap="clr-namespace:Bonsai.Sleap;assembly=Bonsai.Sleap"
+                 xmlns:p1="clr-namespace:;assembly=Extensions"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
       <Expression xsi:type="SubscribeSubject">
         <Name>CameraFrames</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:ElementIndex" />
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="ModelFileName" />
@@ -24,82 +27,23 @@
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="sleap:GetBodyPart">
-          <sleap:Name>Nose</sleap:Name>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="sleap:GetBodyPart">
-          <sleap:Name>LeftEar</sleap:Name>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="sleap:GetBodyPart">
-          <sleap:Name>RightEar</sleap:Name>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="sleap:GetBodyPart">
-          <sleap:Name>Body</sleap:Name>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="sleap:GetBodyPart">
-          <sleap:Name>TailBase</sleap:Name>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:ElementIndex" />
-      </Expression>
-      <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Zip" />
       </Expression>
-      <Expression xsi:type="scr:ExpressionTransform">
-        <scr:Expression>new (
-Item6.Index as FrameCount,
-
-Item1.Position.X as Nose_X,
-Item1.Position.Y as Nose_Y,
-Item1.Confidence as Nose_Conf,
-
-Item2.Position.X as LeftEar_X,
-Item2.Position.Y as LeftEar_Y,
-Item2.Confidence as LeftEar_Conf,
-
-Item3.Position.X as RightEar_X,
-Item3.Position.Y as RightEar_Y,
-Item3.Confidence as RightEar_Conf,
-
-Item4.Position.X as Body_X,
-Item4.Position.Y as Body_Y,
-Item4.Confidence as Body_Conf,
-
-Item5.Position.X as TailBase_X,
-Item5.Position.Y as TailBase_Y,
-Item5.Confidence as TailBase_Conf
-)</scr:Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:ExtractBodyPartPositions" />
       </Expression>
       <Expression xsi:type="rx:PublishSubject">
         <Name>MouseBodyParts</Name>
       </Expression>
     </Nodes>
     <Edges>
-      <Edge From="0" To="2" Label="Source1" />
-      <Edge From="1" To="2" Label="Source2" />
-      <Edge From="2" To="3" Label="Source1" />
-      <Edge From="2" To="4" Label="Source1" />
-      <Edge From="2" To="5" Label="Source1" />
-      <Edge From="2" To="6" Label="Source1" />
-      <Edge From="2" To="7" Label="Source1" />
-      <Edge From="2" To="8" Label="Source1" />
-      <Edge From="3" To="9" Label="Source1" />
-      <Edge From="4" To="9" Label="Source2" />
-      <Edge From="5" To="9" Label="Source3" />
-      <Edge From="6" To="9" Label="Source4" />
-      <Edge From="7" To="9" Label="Source5" />
-      <Edge From="8" To="9" Label="Source6" />
-      <Edge From="9" To="10" Label="Source1" />
-      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="0" To="1" Label="Source1" />
+      <Edge From="0" To="3" Label="Source1" />
+      <Edge From="1" To="4" Label="Source1" />
+      <Edge From="2" To="3" Label="Source2" />
+      <Edge From="3" To="4" Label="Source2" />
+      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="5" To="6" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
