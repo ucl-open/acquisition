@@ -15,7 +15,7 @@ The properties of this workflow allow the user to provide the path to their pre-
 | **Property Name**       | **Input/Output** | **Description**                                                           |
 |-------------------------|------------------|---------------------------------------------------------------------------|
 | `CameraFrames`          | Input            | The stream of image frames.                                               |
-| `MouseBodyParts`        | Output           | The x pos, y pos, and confidence of each body part.                       |
+| `MouseBodyParts`        | Output           | The frame, body part name, x pos, y pos, and confidence of each body part at each frame.                       |
 
 ### Configuration Parameters
 | **Property Name**       | **Input/Output** | **Description**                                                           |
