@@ -1,51 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.9.0"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
-                 xmlns:p1="clr-namespace:System.Reactive;assembly=System.Reactive.Core"
                  xmlns:ard="clr-namespace:Bonsai.Arduino;assembly=Bonsai.Arduino"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
-      <Expression xsi:type="Annotation">
-        <Text><![CDATA[This is a BehaviourSubject node that can be used to replicate the rest of the nodes in this line without having to repeat them, can be reused at appropriate places in larger workflows]]></Text>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="BaudRate" Description="Baud rate for this arduino" Category="Arduino" />
+        <Property Name="SamplingInterval" DisplayName="SamplingInterval" Description="Sampling interval, in milliseconds, between analog and I2C measurements" Category="Arduino" />
+        <Property Name="PortName" DisplayName="PortName" Description="The COM port for the serial connection to the Arduino" Category="Arduino" />
       </Expression>
-      <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p1:Unit">
-        <rx:Name>TriggerOn</rx:Name>
-      </Expression>
-      <Expression xsi:type="Annotation">
-        <Text><![CDATA[Set the boolean to True to turn the LEDs on via communication with the Arduino]]></Text>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="BooleanProperty">
-          <Value>true</Value>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Annotation">
-        <Text><![CDATA[Set the pin and COM port for the respective appropriate pin to control LEDs on the Arduino board, and the port for whichever port the Arduino is plugged into]]></Text>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Value" DisplayName="Name" Description="Optional alias for Arduino board." Category="Arduino" />
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="ard:DigitalOutput">
-          <ard:PortName>ArduBoy</ard:PortName>
-          <ard:Pin>7</ard:Pin>
+        <Combinator xsi:type="StringProperty" />
+      </Expression>
+      <Expression xsi:type="PropertyMapping">
+        <PropertyMappings>
+          <Property Name="Name" />
+        </PropertyMappings>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="ard:CreateArduino">
+          <ard:Name>Arduino</ard:Name>
+          <ard:PortName>COMx</ard:PortName>
+          <ard:BaudRate>9600</ard:BaudRate>
+          <ard:SamplingInterval>0</ard:SamplingInterval>
         </Combinator>
-      </Expression>
-      <Expression xsi:type="Annotation">
-        <Text><![CDATA[This is a BehaviourSubject node that can be used to replicate the rest of the nodes in this line without having to repeat them, can be reused at appropriate places in larger workflows]]></Text>
-      </Expression>
-      <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p1:Unit">
-        <rx:Name>TriggerOff</rx:Name>
-      </Expression>
-      <Expression xsi:type="Annotation">
-        <Text><![CDATA[Set the boolean to False to turn the LEDs off via communication with the Arduino]]></Text>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="BooleanProperty">
           <Value>false</Value>
         </Combinator>
       </Expression>
-      <Expression xsi:type="Annotation">
-        <Text><![CDATA[Set the pin and COM port for the respective appropriate pin to control LEDs on the Arduino board, and the port for whichever port the Arduino is plugged into]]></Text>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Delay">
+          <rx:DueTime>PT1S</rx:DueTime>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Name" DisplayName="LedTriggerSubjectName" Description="The name of the subject to which boolean triggers can be sent. True will set the selected Pin to HIGH, and False to LOW. " Category="Subjects" />
+      </Expression>
+      <Expression xsi:type="rx:BehaviorSubject">
+        <Name>LedTrigger</Name>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>LedTrigger</Name>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Pin" DisplayName="Pin" Description="The output pin on the Arduino board to which triggers will be sent" Category="Arduino" />
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="ard:DigitalOutput">
@@ -53,25 +58,20 @@
           <ard:Pin>7</ard:Pin>
         </Combinator>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Merge" />
-      </Expression>
       <Expression xsi:type="WorkflowOutput" />
     </Nodes>
     <Edges>
-      <Edge From="0" To="1" Label="Source1" />
-      <Edge From="1" To="3" Label="Source1" />
-      <Edge From="2" To="3" Label="Source2" />
-      <Edge From="3" To="5" Label="Source1" />
-      <Edge From="4" To="5" Label="Source2" />
-      <Edge From="5" To="12" Label="Source1" />
-      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="0" To="4" Label="Source1" />
+      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="3" To="4" Label="Source2" />
+      <Edge From="5" To="6" Label="Source1" />
+      <Edge From="6" To="8" Label="Source1" />
+      <Edge From="7" To="8" Label="Source2" />
       <Edge From="7" To="9" Label="Source1" />
-      <Edge From="8" To="9" Label="Source2" />
       <Edge From="9" To="11" Label="Source1" />
       <Edge From="10" To="11" Label="Source2" />
-      <Edge From="11" To="12" Label="Source2" />
-      <Edge From="12" To="13" Label="Source1" />
+      <Edge From="11" To="12" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
