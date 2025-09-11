@@ -26,7 +26,6 @@ This workflow exposes properties that allow a user to configure the device behav
 | `PulseDO0`                | Input            | Pulse width value (in ms) for DO0.                                              |
 | `PulseDO1`                | Input            | Pulse width value (in ms) for DO1.                                              |
 | `PulseDO2`                | Input            | Pulse width value (in ms) for DO2.                                              |
-| `Value`                   | Input            | Used in conditional branches to check equality for triggering output sets.      |
 
 ## Dependencies
 
