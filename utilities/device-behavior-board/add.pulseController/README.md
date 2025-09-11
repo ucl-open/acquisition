@@ -1,10 +1,10 @@
 # Harp Behavior Board Interface
 
-This module configures an existing [Harp Behavior](https://github.com/harp-tech/device.behavior) device's digital output pulses. This module can be added to a workflow that already contains a [`BehaviorBoard.bonsai`](./BehaviorBoard.bonsai) module.
+This module configures an existing [Harp Behavior](https://github.com/harp-tech/device.behavior) device's digital output pulses. These pulses can be used to actuate many different peripheral devices, e.g. air puff or reward drop solenoid valves, or for alignment pulses. This module can be added to a workflow that already contains a [`BehaviorBoard.bonsai`](./BehaviorBoard.bonsai) module.
 
 ## Bonsai Workflow
 
-<img src="./assets/ValvePulseController.svg" alt="workflow" width="500">
+<img src="./assets/PulseController.svg" alt="workflow" width="500">
 
 ## Properties
 
@@ -14,9 +14,9 @@ This workflow exposes properties that allow a user to configure the device behav
 
 | **Property Name**         | **Input/Output** | **Description**                                                                 |
 |---------------------------|------------------|---------------------------------------------------------------------------------|
-| `CommandsSubjectName`     | Input            | The name of the input subject that sends configuration and control commands. **N.B. Must match the `CommandsSubjectName` in the properties of the `BehaviorBoard` module.**   |
-| `EventsSubjectName`       | Output           | The name of the subject that receives event messages from the device. **N.B. Must match the `EventssSubjectName` in the properties of the `BehaviorBoard` module.**           |
-| `TriggerValveSubjectName` | Input            | Subject that carries integer values (0–2) to trigger individual output ports.   |
+| `BehaviorCommandsSubjectName`     | Input            | The name of the input subject that sends configuration and control commands. **N.B. Must match the `BehaviorCommandsSubjectName` in the properties of the `BehaviorBoard` module.**   |
+| `BehaviorEventsSubjectName`       | Output           | The name of the subject that receives event messages from the device. **N.B. Must match the `BehaviorEventsSubjectName` in the properties of the `BehaviorBoard` module.**           |
+| `TriggerPulseSubjectName` | Input            | Subject that carries integer values (0–2) to trigger individual output pulses on DOs |
 
 ### Configuration Parameters
 
