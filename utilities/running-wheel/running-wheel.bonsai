@@ -4,6 +4,8 @@
                  xmlns:beh="clr-namespace:Harp.Behavior;assembly=Harp.Behavior"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
+                 xmlns:ipy="clr-namespace:Bonsai.Scripting.IronPython;assembly=Bonsai.Scripting.IronPython"
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
                  xmlns="https://bonsai-rx.org/2018/workflow">
@@ -48,9 +50,27 @@
       <Expression xsi:type="MemberSelector">
         <Selector>Encoder</Selector>
       </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="dsp:Difference">
+          <dsp:Order>1</dsp:Order>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="ipy:PythonTransform">
+        <ipy:Script>@returns(int)
+def process(value):
+  CAPACITY = 2**16
+  MAX = CAPACITY/2
+  MIN = -CAPACITY/2
+  if value &gt; MAX:
+    value -= CAPACITY
+  elif value &lt; MIN:
+    value += CAPACITY
+  return value</ipy:Script>
+      </Expression>
+      <Expression xsi:type="rx:Accumulate" />
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="CountsPerRev" />
-        <Property Name="WheelDiameter(mm)" />
+        <Property Name="WheelDiameter_mm" />
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>TicksToCentimeters</Name>
@@ -66,7 +86,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="FloatProperty">
-                <Value>4182</Value>
+                <Value>-3440</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -78,7 +98,7 @@
               </Operand>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Value" DisplayName="WheelDiameter(mm)" />
+              <Property Name="Value" DisplayName="WheelDiameter_mm" />
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="IntProperty">
@@ -115,7 +135,7 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="rx:PublishSubject">
-        <Name>WheelDistance(cm)</Name>
+        <Name>WheelDistance_cm</Name>
       </Expression>
       <Expression xsi:type="WorkflowOutput" />
     </Nodes>
@@ -129,10 +149,13 @@
       <Edge From="6" To="7" Label="Source2" />
       <Edge From="8" To="9" Label="Source1" />
       <Edge From="9" To="10" Label="Source1" />
-      <Edge From="10" To="12" Label="Source1" />
-      <Edge From="11" To="12" Label="Source2" />
+      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="11" To="12" Label="Source1" />
       <Edge From="12" To="13" Label="Source1" />
-      <Edge From="13" To="14" Label="Source1" />
+      <Edge From="13" To="15" Label="Source1" />
+      <Edge From="14" To="15" Label="Source2" />
+      <Edge From="15" To="16" Label="Source1" />
+      <Edge From="16" To="17" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
