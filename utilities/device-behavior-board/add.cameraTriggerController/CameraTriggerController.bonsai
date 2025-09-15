@@ -76,7 +76,7 @@
         <Name>BehaviorEvents</Name>
       </Expression>
       <Expression xsi:type="beh:Parse">
-        <harp:Register xsi:type="beh:Camera0Frame" />
+        <harp:Register xsi:type="beh:TimestampedCamera0Frame" />
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="Name" DisplayName="CameraTriggerEventsSubjectName" Description="The name of the subject to which timestamped camera trigger events from the behavior board are published" Category="Subjects" />
