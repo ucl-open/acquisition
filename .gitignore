@@ -1,0 +1,5 @@
+*.editor
+*.layout
+**/.bonsai/Settings/
+**/obj/
+**/bin/
