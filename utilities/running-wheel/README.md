@@ -10,7 +10,7 @@ Incoming device events are then filtered for analog inputs, and the quadrature e
 
 The resulting distance in centimeters is the final output of the workflow.
 
-<img src="running-wheel.png" alt="workflow" width="400">
+<img src="assets/RunningWheel.svg" alt="workflow" width="400">
 
 ## Properties
 The properties of this workflow allow the user to define the encoder resolution (counts per revolution) and the running wheel diameter (in millimeters). These values are used to convert the encoder tick count into running distance (in centimeters). Note that the Kubler 05.2400.1122.1024 quadrature encoder produces 1024 counts per revolution, but the HARP board’s built-in quadrature counter uses x4 decoding. This means it counts all four edges of the A/B signals (rising and falling edges of both channels), giving an effective resolution of 4096 counts per revolution.
@@ -18,7 +18,7 @@ The properties of this workflow allow the user to define the encoder resolution 
 ### Input and Output `Subjects`
 | **Property Name**       | **Input/Output** | **Description**                                                           |
 |-------------------------|------------------|---------------------------------------------------------------------------|
-| `EventsSubjectName`     | Input            | The name of the subject that receives event messages from the device.     |
+| `EventsSubjectName`     | Input            | The name of the subject that receives event messages from the behavior device connected to the rotary encoder.     |
 | `WheelDistance(cm)`     | Output           | The total distance the wheel has moved (in centimeters).                    |
 
 ### Configuration Parameters
