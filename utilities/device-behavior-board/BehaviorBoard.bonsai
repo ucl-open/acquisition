@@ -11,7 +11,7 @@
         <Property Name="Name" DisplayName="CommandsSubjectName" Description="The name of the input &quot;commands&quot; Subject" Category="Subjects" />
       </Expression>
       <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:HarpMessage">
-        <rx:Name>DeviceCommands</rx:Name>
+        <rx:Name>BehaviorCommands</rx:Name>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="PortName" />
@@ -26,14 +26,14 @@
           <harp:VisualIndicators>Off</harp:VisualIndicators>
           <harp:Heartbeat>Disabled</harp:Heartbeat>
           <harp:IgnoreErrors>false</harp:IgnoreErrors>
-          <harp:PortName>COM14</harp:PortName>
+          <harp:PortName>COMx</harp:PortName>
         </Combinator>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="Name" DisplayName="EventsSubjectName" Description="The name of the output &quot;Events&quot; Subject" Category="Subjects" />
       </Expression>
       <Expression xsi:type="rx:PublishSubject">
-        <Name>DeviceEvents</Name>
+        <Name>BehaviorEvents</Name>
       </Expression>
       <Expression xsi:type="WorkflowOutput" />
     </Nodes>
