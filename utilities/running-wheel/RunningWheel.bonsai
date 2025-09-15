@@ -28,19 +28,19 @@
         <Property Name="Name" DisplayName="CommandsSubjectName" Description="The name of the Subject that carries command messages for a specific behavior device" Category="Subjects" />
       </Expression>
       <Expression xsi:type="MulticastSubject">
-        <Name>DeviceCommands</Name>
+        <Name>BehaviorCommands</Name>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="Name" DisplayName="EventsSubjectName" Description="The name of the Subject that carries event messages from a specific behavior device" Category="Subjects" />
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>DeviceEvents</Name>
+        <Name>BehaviorEvents</Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:SubscribeWhen" />
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>DeviceEvents</Name>
+        <Name>BehaviorEvents</Name>
       </Expression>
       <Expression xsi:type="beh:Parse">
         <harp:Register xsi:type="beh:AnalogData" />
@@ -49,8 +49,8 @@
         <Selector>Encoder</Selector>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
-        <Property Name="CountsPerRev" Description="The number of steps recorded per full revolution for this rotary encoder" Category="Configuration" />
-        <Property Name="WheelDiameter(mm)" Description="The diameter of the running wheel" Category="Configuration" />
+        <Property Name="CountsPerRev" />
+        <Property Name="WheelDiameter_mm" />
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>TicksToCentimeters</Name>
@@ -78,7 +78,7 @@
               </Operand>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Value" DisplayName="WheelDiameter(mm)" />
+              <Property Name="Value" DisplayName="WheelDiameter_mm" />
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="IntProperty">
@@ -115,7 +115,7 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="rx:PublishSubject">
-        <Name>WheelDistance(cm)</Name>
+        <Name>WheelDistance_cm</Name>
       </Expression>
       <Expression xsi:type="WorkflowOutput" />
     </Nodes>
