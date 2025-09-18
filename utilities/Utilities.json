@@ -1,0 +1,217 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "lab://schemas/UtilitiesConfig.json",
+    "title": "UtilitiesConfig",
+    "type": "object",
+    "description": "Unified configuration for lab utilities. Include only modules you use; arrays can be empty or omitted.",
+    "properties": {
+        "modules": {
+            "type": "object",
+            "description": "Modules used on a given rig or workflow. Each is an array so you can instantiate multiple (or zero) devices.",
+            "properties": {
+                "BehaviorBoard": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/BehaviorBoardConfig"
+                    }
+                },
+                "CameraTriggerController": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/CameraTriggerControllerConfig"
+                    }
+                },
+                "LicketySplit": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/LicketySplitConfig"
+                    }
+                },
+                "RunningWheel": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/RunningWheelConfig"
+                    }
+                },
+                "TriggeredCameraAcquisition": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/TriggeredCameraAcquisitionConfig"
+                    }
+                }
+            }
+        }
+    },
+    "$defs": {
+        "BehaviorBoardConfig": {
+            "type": "object",
+            "properties": {
+                "EventsSubjectName": {
+                    "type": "string",
+                    "description": "The name of the output \"Events\" Subject",
+                    "default": "BehaviorEvents"
+                },
+                "CommandsSubjectName": {
+                    "type": "string",
+                    "description": "The name of the input \"Commands\" Subject",
+                    "default": "BehaviorCommands"
+                },
+                "PortName": {
+                    "type": "string",
+                    "default": "COMx",
+                    "description": "The name of the serial connection to communicate with this device"
+                },
+                "DumpRegisters": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "Heartbeat": {
+                    "type": "string",
+                    "default": "Enabled"
+                }
+            },
+            "required": [
+                "EventsSubjectName",
+                "CommandsSubjectName",
+                "PortName",
+                "DumpRegisters",
+                "Heartbeat"
+            ]
+        },
+        "CameraTriggerControllerConfig": {
+            "type": "object",
+            "properties": {
+                "TriggerFrequency": {
+                    "type": "number",
+                    "description": "The frequency at which to trigger cameras.",
+                    "default": 50
+                },
+                "BehaviorCommandsSubjectName": {
+                    "type": "string",
+                    "description": "The name of the subject that carries command messages to a specific behavior device.",
+                    "default": "BehaviorCommands"
+                },
+                "BehaviorEventsSubjectName": {
+                    "type": "string",
+                    "description": "The name of the subject that carries event messages from a specific behavior device.",
+                    "default": "BehaviorEvents"
+                },
+                "CameraTriggerEventsSubjectName": {
+                    "type": "string",
+                    "description": "The name of the subject to which timestamped camera trigger events from the behavior board are published.",
+                    "default": "CameraTriggerEvents"
+                }
+            },
+            "required": [
+                "TriggerFrequency",
+                "BehaviorCommandsSubjectName",
+                "BehaviorEventsSubjectName",
+                "CameraTriggerEventsSubjectName"
+            ]
+        },
+        "LicketySplitConfig": {
+            "type": "object",
+            "properties": {
+                "LickStateSubjectName": {
+                    "type": "string",
+                    "description": "The name of the subject that carries the state of the lick detector whenever it changes. HIGH when lick is detected, LOW when not.",
+                    "default": "LickState"
+                },
+                "CommandsSubjectName": {
+                    "type": "string",
+                    "description": "The name of the subject that carries command messages to a specific behavior device.",
+                    "default": "LickCommands"
+                },
+                "EventsSubjectName": {
+                    "type": "string",
+                    "description": "The name of the subject that carries event messages from a specific behavior device.",
+                    "default": "LickEvents"
+                },
+                "PortName": {
+                    "type": "string",
+                    "description": "The name of the serial connection to communicate with this device",
+                    "default": "COMx"
+                },
+                "DumpRegisters": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "Heartbeat": {
+                    "type": "string",
+                    "default": "Enabled"
+                },
+                "Channel0TriggerThreshold": {
+                    "type": "integer",
+                    "default": 0
+                },
+                "Channel0UntriggerThreshold": {
+                    "type": "integer",
+                    "default": 0
+                }
+            }
+        },
+        "RunningWheelConfig": {
+            "type": "object",
+            "properties": {
+                "BehaviorEventsSubjectName": {
+                    "type": "string",
+                    "description": "The name of the Subject that carries event messages from a specific behavior device",
+                    "default": "BehaviorEvents"
+                },
+                "BehaviorCommandsSubjectName": {
+                    "type": "string",
+                    "description": "The name of the Subject that carries command messages to a specific behavior device",
+                    "default": "BehaviorCommands"
+                },
+                "StepsPerRev": {
+                    "type": "integer",
+                    "description": "The number of steps recorded per full revolution for this rotary encoder",
+                    "default": 4096
+                },
+                "WheelDiameterMm": {
+                    "type": "number",
+                    "description": "The diameter of the running wheel in millimetres",
+                    "default": 600
+                }
+            }
+        },
+        "TriggeredCameraAcquisitionConfig": {
+            "type": "object",
+            "properties": {
+                "ExposureTime": {
+                    "type": "integer",
+                    "default": 10000
+                },
+                "Gain": {
+                    "type": "number",
+                    "default": 1
+                },
+                "Binning": {
+                    "type": "integer",
+                    "default": 1
+                },
+                "SerialNumber": {
+                    "type": "string",
+                    "default": "1234567890"
+                },
+                "ColorProcessing": {
+                    "type": "string",
+                    "default": "Default"
+                },
+                "FrameEventsSubjectName": {
+                    "type": "string",
+                    "description": "The name of the subject to which indexed, timestamped camera frames are published",
+                    "default": "FrameEvents"
+                }
+            },
+            "required": [
+                "ExposureTime",
+                "Gain",
+                "Binning",
+                "SerialNumber",
+                "ColorProcessing",
+                "FrameEventsSubjectName"
+            ]
+        }
+    }
+}
