@@ -39,23 +39,27 @@
                 <beh:OutputPulseEnable>DO1 DO2 DO3</beh:OutputPulseEnable>
               </harp:Payload>
             </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Name" />
+            </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>BehaviorBoardCommands</Name>
+              <Name>BehaviorCommands</Name>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
           <Edges>
             <Edge From="0" To="2" Label="Source1" />
             <Edge From="1" To="2" Label="Source2" />
-            <Edge From="2" To="3" Label="Source1" />
-            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="2" To="4" Label="Source1" />
+            <Edge From="3" To="4" Label="Source2" />
+            <Edge From="4" To="5" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
-        <Property Name="PulseDO0" />
         <Property Name="PulseDO1" />
         <Property Name="PulseDO2" />
+        <Property Name="PulseDO3" />
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>PulseWidths</Name>
@@ -65,28 +69,19 @@
               <Name>Source1</Name>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
-              <Property Name="PulseDO0" />
-            </Expression>
-            <Expression xsi:type="beh:CreateMessage">
-              <harp:MessageType>Write</harp:MessageType>
-              <harp:Payload xsi:type="beh:CreatePulseDO0Payload">
-                <beh:PulseDO0>33</beh:PulseDO0>
-              </harp:Payload>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>BehaviorBoardCommands</Name>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
               <Property Name="PulseDO1" />
             </Expression>
             <Expression xsi:type="beh:CreateMessage">
               <harp:MessageType>Write</harp:MessageType>
               <harp:Payload xsi:type="beh:CreatePulseDO1Payload">
-                <beh:PulseDO1>33</beh:PulseDO1>
+                <beh:PulseDO1>1</beh:PulseDO1>
               </harp:Payload>
             </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Name" />
+            </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>BehaviorBoardCommands</Name>
+              <Name>BehaviorCommands</Name>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
               <Property Name="PulseDO2" />
@@ -94,25 +89,40 @@
             <Expression xsi:type="beh:CreateMessage">
               <harp:MessageType>Write</harp:MessageType>
               <harp:Payload xsi:type="beh:CreatePulseDO2Payload">
-                <beh:PulseDO2>33</beh:PulseDO2>
+                <beh:PulseDO2>1</beh:PulseDO2>
               </harp:Payload>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>BehaviorBoardCommands</Name>
+              <Name>BehaviorCommands</Name>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="PulseDO3" />
+            </Expression>
+            <Expression xsi:type="beh:CreateMessage">
+              <harp:MessageType>Write</harp:MessageType>
+              <harp:Payload xsi:type="beh:CreatePulseDO3Payload">
+                <beh:PulseDO3>1</beh:PulseDO3>
+              </harp:Payload>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>BehaviorCommands</Name>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
           <Edges>
             <Edge From="0" To="2" Label="Source1" />
             <Edge From="1" To="2" Label="Source2" />
-            <Edge From="2" To="3" Label="Source1" />
-            <Edge From="3" To="5" Label="Source1" />
-            <Edge From="4" To="5" Label="Source2" />
-            <Edge From="5" To="6" Label="Source1" />
-            <Edge From="6" To="8" Label="Source1" />
-            <Edge From="7" To="8" Label="Source2" />
-            <Edge From="8" To="9" Label="Source1" />
+            <Edge From="2" To="4" Label="Source1" />
+            <Edge From="3" To="4" Label="Source2" />
+            <Edge From="3" To="7" Label="Source2" />
+            <Edge From="3" To="10" Label="Source2" />
+            <Edge From="4" To="6" Label="Source1" />
+            <Edge From="5" To="6" Label="Source2" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="9" Label="Source1" />
+            <Edge From="8" To="9" Label="Source2" />
             <Edge From="9" To="10" Label="Source1" />
+            <Edge From="10" To="11" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -171,7 +181,7 @@
         </harp:Payload>
       </Expression>
       <Expression xsi:type="MulticastSubject">
-        <Name>BehaviorBoardCommands</Name>
+        <Name>BehaviorCommands</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>TriggerPulse</Name>
@@ -206,7 +216,7 @@
         </harp:Payload>
       </Expression>
       <Expression xsi:type="MulticastSubject">
-        <Name>BehaviorBoardCommands</Name>
+        <Name>BehaviorCommands</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>TriggerPulse</Name>
@@ -241,12 +251,17 @@
         </harp:Payload>
       </Expression>
       <Expression xsi:type="MulticastSubject">
-        <Name>BehaviorBoardCommands</Name>
+        <Name>BehaviorCommands</Name>
       </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="2" Label="Source1" />
       <Edge From="1" To="2" Label="Source2" />
+      <Edge From="1" To="4" Label="Source3" />
+      <Edge From="1" To="6" Label="Source3" />
+      <Edge From="1" To="16" Label="Source2" />
+      <Edge From="1" To="20" Label="Source2" />
+      <Edge From="1" To="24" Label="Source2" />
       <Edge From="2" To="4" Label="Source1" />
       <Edge From="3" To="4" Label="Source2" />
       <Edge From="4" To="6" Label="Source1" />
