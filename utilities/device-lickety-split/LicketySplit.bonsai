@@ -74,6 +74,11 @@
       <Expression xsi:type="p1:Parse">
         <harp:Register xsi:type="p1:LickState" />
       </Expression>
+      <Expression xsi:type="Equal">
+        <Operand xsi:type="WorkflowProperty" TypeArguments="p1:LickChannels">
+          <Value>Channel0</Value>
+        </Operand>
+      </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="Name" DisplayName="LickStateSubjectName" Description="The name of the subject that carries the state of the lick detector whenever it changes. HIGH when lick is detected, LOW when not." Category="Subjects" />
       </Expression>
@@ -100,8 +105,9 @@
       <Edge From="12" To="13" Label="Source1" />
       <Edge From="13" To="14" Label="Source1" />
       <Edge From="15" To="16" Label="Source1" />
-      <Edge From="16" To="18" Label="Source1" />
-      <Edge From="17" To="18" Label="Source2" />
+      <Edge From="16" To="17" Label="Source1" />
+      <Edge From="17" To="19" Label="Source1" />
+      <Edge From="18" To="19" Label="Source2" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
