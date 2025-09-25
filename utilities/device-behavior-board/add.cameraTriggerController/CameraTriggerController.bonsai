@@ -13,8 +13,8 @@
       </Expression>
       <Expression xsi:type="beh:CreateMessage">
         <harp:MessageType>Write</harp:MessageType>
-        <harp:Payload xsi:type="beh:CreatePwmStartPayload">
-          <beh:PwmStart>PwmDO0 PwmDO1</beh:PwmStart>
+        <harp:Payload xsi:type="beh:CreateStartCamerasPayload">
+          <beh:StartCameras>CameraOutput0</beh:StartCameras>
         </harp:Payload>
       </Expression>
       <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Object">
@@ -22,8 +22,8 @@
       </Expression>
       <Expression xsi:type="beh:CreateMessage">
         <harp:MessageType>Write</harp:MessageType>
-        <harp:Payload xsi:type="beh:CreatePwmStopPayload">
-          <beh:PwmStop>PwmDO0 PwmDO1</beh:PwmStop>
+        <harp:Payload xsi:type="beh:CreateStopCamerasPayload">
+          <beh:StopCameras>CameraOutput0</beh:StopCameras>
         </harp:Payload>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
@@ -39,13 +39,13 @@
       </Expression>
       <Expression xsi:type="PropertyMapping">
         <PropertyMappings>
-          <Property Name="PwmFrequencyDO0" />
+          <Property Name="Camera0Frequency" />
         </PropertyMappings>
       </Expression>
       <Expression xsi:type="beh:CreateMessage">
         <harp:MessageType>Write</harp:MessageType>
-        <harp:Payload xsi:type="beh:CreatePwmFrequencyDO0Payload">
-          <beh:PwmFrequencyDO0>1</beh:PwmFrequencyDO0>
+        <harp:Payload xsi:type="beh:CreateCamera0FrequencyPayload">
+          <beh:Camera0Frequency>50</beh:Camera0Frequency>
         </harp:Payload>
       </Expression>
       <Expression xsi:type="Combinator">
