@@ -45,7 +45,7 @@
       <Expression xsi:type="beh:CreateMessage">
         <harp:MessageType>Write</harp:MessageType>
         <harp:Payload xsi:type="beh:CreateCamera0FrequencyPayload">
-          <beh:Camera0Frequency>1</beh:Camera0Frequency>
+          <beh:Camera0Frequency>50</beh:Camera0Frequency>
         </harp:Payload>
       </Expression>
       <Expression xsi:type="Combinator">
