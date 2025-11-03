@@ -23,7 +23,7 @@
             </Expression>
             <Expression xsi:type="PropertySource" TypeArguments="io:GetFiles,sys:String">
               <MemberName>Path</MemberName>
-              <Value>C:/LocalData</Value>
+              <Value>D:\LocalData</Value>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Timestamp" />
@@ -36,7 +36,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>plimbo</Value>
+                <Value>Algernon</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -65,9 +65,7 @@
                 <rx:Count>1</rx:Count>
               </Combinator>
             </Expression>
-            <Expression xsi:type="rx:AsyncSubject">
-              <Name>PathPrefix</Name>
-            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
           </Nodes>
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
@@ -87,7 +85,9 @@
           </Edges>
         </Workflow>
       </Expression>
-      <Expression xsi:type="WorkflowOutput" />
+      <Expression xsi:type="rx:AsyncSubject">
+        <Name>PathPrefix</Name>
+      </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
