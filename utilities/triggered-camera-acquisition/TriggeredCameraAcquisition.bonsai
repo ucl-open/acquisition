@@ -4,72 +4,14 @@
                  xmlns:aeon-video="clr-namespace:Aeon.Video;assembly=Aeon.Video"
                  xmlns:spk="clr-namespace:Bonsai.Spinnaker;assembly=Bonsai.Spinnaker"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
-                 xmlns:beh="clr-namespace:Harp.Behavior;assembly=Harp.Behavior"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
-      <Expression xsi:type="Annotation">
-        <Text><![CDATA[Initialises and captures camera frames from Spinnaker cameras with externalised mapping to allow for configuration of select camera settings as per user's discretion]]></Text>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="aeon-video:SpinnakerCapture">
-            <spk:Index>1</spk:Index>
-            <spk:SerialNumber>23201544</spk:SerialNumber>
-            <spk:ColorProcessing>Default</spk:ColorProcessing>
-            <aeon-video:ExposureTime>10000</aeon-video:ExposureTime>
-            <aeon-video:Gain>1</aeon-video:Gain>
-            <aeon-video:Binning>1</aeon-video:Binning>
-          </Combinator>
-        </Builder>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="MemberSelector">
-          <Selector>Image</Selector>
-        </Builder>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="rx:Visualizer">
-          <Name>PupilCamera</Name>
-          <Description>PupilCamera</Description>
-          <Workflow>
-            <Nodes>
-              <Expression xsi:type="WorkflowInput">
-                <Name>Source1</Name>
-              </Expression>
-              <Expression xsi:type="WorkflowOutput" />
-            </Nodes>
-            <Edges>
-              <Edge From="0" To="1" Label="Source1" />
-            </Edges>
-          </Workflow>
-        </Builder>
-      </Expression>
-      <Expression xsi:type="Annotation">
-        <Text><![CDATA[Takes output of events from BehaviorBoard workflow]]></Text>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="SubscribeSubject">
-          <Name>BehaviorBoardEvents</Name>
-        </Builder>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="beh:FilterRegister">
-          <harp:FilterType>Include</harp:FilterType>
-          <harp:Register xsi:type="beh:Camera0Frame" />
-        </Builder>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="rx:Zip" />
-        </Builder>
-      </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="ExposureTime" />
         <Property Name="Gain" />
         <Property Name="Binning" />
-        <Property Name="Index" />
         <Property Name="SerialNumber" />
         <Property Name="ColorProcessing" />
       </Expression>
@@ -93,7 +35,7 @@
         <Combinator xsi:type="rx:ElementIndex" />
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
-        <Property Name="Name" DisplayName="TriggerEvents" Category="Subjects" />
+        <Property Name="Name" DisplayName="CameraTriggerEventsSubjectName" Description="The name of the subject carrying trigger events from a camera controller or behavior board. " Category="Subjects" />
       </Expression>
       <Expression xsi:type="Annotation">
         <Text><![CDATA[Takes timestamped camera frames triggered from the BehaviorBoard workflow that works on the BehaviorBoard device with an externalised mapping of TriggerEvents to allow for trigger event subscription configuration]]></Text>
@@ -127,38 +69,37 @@
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="harp:CreateTimestamped" />
       </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Name" DisplayName="FrameEventsSubjectName" Description="The name of the subject to which indexed, timestamped camera frames are published" Category="Subjects" />
+      </Expression>
       <Expression xsi:type="Annotation">
         <Text><![CDATA[Publishes Harp compatible timestamped frame events for implementation into other workflows]]></Text>
       </Expression>
       <Expression xsi:type="rx:BehaviorSubject">
         <Name>FrameEvents</Name>
       </Expression>
+      <Expression xsi:type="WorkflowOutput" />
     </Nodes>
     <Edges>
-      <Edge From="0" To="1" Label="Source1" />
-      <Edge From="1" To="2" Label="Source1" />
-      <Edge From="2" To="3" Label="Source1" />
-      <Edge From="2" To="7" Label="Source2" />
-      <Edge From="4" To="5" Label="Source1" />
-      <Edge From="5" To="6" Label="Source1" />
-      <Edge From="6" To="7" Label="Source1" />
-      <Edge From="8" To="10" Label="Source1" />
-      <Edge From="9" To="10" Label="Source2" />
-      <Edge From="10" To="12" Label="Source1" />
-      <Edge From="11" To="12" Label="Source2" />
-      <Edge From="12" To="21" Label="Source1" />
+      <Edge From="0" To="2" Label="Source1" />
+      <Edge From="1" To="2" Label="Source2" />
+      <Edge From="2" To="4" Label="Source1" />
+      <Edge From="3" To="4" Label="Source2" />
+      <Edge From="4" To="13" Label="Source1" />
+      <Edge From="5" To="7" Label="Source1" />
+      <Edge From="6" To="7" Label="Source2" />
+      <Edge From="7" To="9" Label="Source1" />
+      <Edge From="8" To="9" Label="Source2" />
+      <Edge From="9" To="11" Label="Source1" />
+      <Edge From="10" To="11" Label="Source2" />
+      <Edge From="11" To="13" Label="Source2" />
+      <Edge From="12" To="13" Label="Source3" />
       <Edge From="13" To="15" Label="Source1" />
       <Edge From="14" To="15" Label="Source2" />
-      <Edge From="15" To="17" Label="Source1" />
-      <Edge From="16" To="17" Label="Source2" />
-      <Edge From="17" To="19" Label="Source1" />
-      <Edge From="18" To="19" Label="Source2" />
-      <Edge From="19" To="21" Label="Source2" />
-      <Edge From="20" To="21" Label="Source3" />
-      <Edge From="21" To="23" Label="Source1" />
-      <Edge From="22" To="23" Label="Source2" />
-      <Edge From="23" To="25" Label="Source1" />
-      <Edge From="24" To="25" Label="Source2" />
+      <Edge From="15" To="18" Label="Source1" />
+      <Edge From="16" To="18" Label="Source2" />
+      <Edge From="17" To="18" Label="Source3" />
+      <Edge From="18" To="19" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

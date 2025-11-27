@@ -1,7 +1,7 @@
 # Camera Aqcuisition Workflow 
 
 ### Purpose
-The purpose of this workflow is to acquire frames from FLIR cameras.
+The purpose of this workflow is to acquire frames from FLIR cameras without an external trigger.
 
 ## Hardware Requirements
 - FLIR camera
@@ -9,7 +9,7 @@ The purpose of this workflow is to acquire frames from FLIR cameras.
 ## Bonsai Workflow
 This workflow acquires frames from FLIR cameras.
 
-<img src="camera-acquisition.png" alt="workflow" width="400">
+<img src="assets/camera-acquisition.svg" alt="workflow" width="400">
 
 ## Properties
 The properties of this workflow allow the user to specify the serial number of their FLIR camera. This is the 8-digit code located on the bottom of the camera. However, the SpinnakerCapture node should automatically detect the camera and serial number. 
@@ -17,7 +17,7 @@ The properties of this workflow allow the user to specify the serial number of t
 ### Input and Output `Subjects`
 | **Property Name**       | **Input/Output** | **Description**                                                           |
 |-------------------------|------------------|---------------------------------------------------------------------------|
-| `CameraFrames`          | Output           | Outputs each frame acquired by the camera.                                |
+| `FrameEventsSubjectName`          | Output           | The name of the Subject to which acquired camera frames will be published |
 ### Configuration Parameters
 | **Property Name**       | **Input/Output** | **Description**                                                           |
 |-------------------------|------------------|---------------------------------------------------------------------------|

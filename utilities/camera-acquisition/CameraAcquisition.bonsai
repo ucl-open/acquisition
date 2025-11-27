@@ -12,8 +12,8 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="spk:SpinnakerCapture">
-          <spk:Index>0</spk:Index>
-          <spk:SerialNumber>23201539</spk:SerialNumber>
+          <spk:Index xsi:nil="true" />
+          <spk:SerialNumber />
           <spk:ColorProcessing>Default</spk:ColorProcessing>
         </Combinator>
       </Expression>
@@ -23,15 +23,21 @@
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:Grayscale" />
       </Expression>
-      <Expression xsi:type="rx:PublishSubject">
-        <Name>CameraFrames</Name>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Name" DisplayName="FrameEventsSubjectName" Description="The output subject name to which acquired frames will be published" Category="Subject" />
       </Expression>
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>FrameEvents</Name>
+      </Expression>
+      <Expression xsi:type="WorkflowOutput" />
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
       <Edge From="1" To="2" Label="Source1" />
       <Edge From="2" To="3" Label="Source1" />
-      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="3" To="5" Label="Source1" />
+      <Edge From="4" To="5" Label="Source2" />
+      <Edge From="5" To="6" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
