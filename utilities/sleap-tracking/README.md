@@ -4,7 +4,7 @@
 The purpose of this workflow is to do live Sleap tracking of animal poses.
 
 ## Bonsai Workflow
-This workflow accepts a pre-trained Sleap model and a video stream as input and ouputs the x position, y position, and confidence of each model body part for each frame.
+This workflow accepts a pre-trained Sleap model and a video stream as input and ouputs the frame, body part name, x position, y position, and confidence of each model body part for each frame.
 
 <img src="sleap-tracking.png" alt="workflow" width="400">
 
@@ -14,8 +14,8 @@ The properties of this workflow allow the user to provide the path to their pre-
 ### Input and Output `Subjects`
 | **Property Name**       | **Input/Output** | **Description**                                                           |
 |-------------------------|------------------|---------------------------------------------------------------------------|
-| `CameraFrames`          | Input            | The stream of image frames.                                               |
-| `MouseBodyParts`        | Output           | The frame, body part name, x pos, y pos, and confidence of each body part at each frame.                       |
+| `FrameEventsSubjectName`| Input            | The name of the subject that receives acquired camera frames.             |
+| `BodyPartPositionsSubjectName`| Output     | The name of the subject to which body part information will be published. |
 
 ### Configuration Parameters
 | **Property Name**       | **Input/Output** | **Description**                                                           |
