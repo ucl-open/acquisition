@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.9.0"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:port="clr-namespace:Bonsai.IO.Ports;assembly=Bonsai.System"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Name" />
+        <Property Name="PortName" />
+        <Property Name="BaudRate" />
+        <Property Name="Encoding" />
+        <Property Name="NewLine" />
+        <Property Name="Parity" />
+        <Property Name="ParityReplace" />
+        <Property Name="DataBits" />
+        <Property Name="StopBits" />
+        <Property Name="Handshake" />
+        <Property Name="DiscardNull" />
+        <Property Name="DtrEnable" />
+        <Property Name="RtsEnable" />
+        <Property Name="ReadBufferSize" />
+        <Property Name="WriteBufferSize" />
+        <Property Name="ReceivedBytesThreshold" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="port:CreateSerialPort">
+          <port:BaudRate>9600</port:BaudRate>
+          <port:NewLine>\r\n</port:NewLine>
+          <port:Parity>None</port:Parity>
+          <port:ParityReplace>63</port:ParityReplace>
+          <port:DataBits>8</port:DataBits>
+          <port:StopBits>One</port:StopBits>
+          <port:Handshake>None</port:Handshake>
+          <port:DiscardNull>false</port:DiscardNull>
+          <port:DtrEnable>false</port:DtrEnable>
+          <port:RtsEnable>false</port:RtsEnable>
+          <port:ReadBufferSize>4096</port:ReadBufferSize>
+          <port:WriteBufferSize>2048</port:WriteBufferSize>
+          <port:ReceivedBytesThreshold>1</port:ReceivedBytesThreshold>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="port:SerialReadLine" />
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Pattern" />
+      </Expression>
+      <Expression xsi:type="Parse">
+        <Pattern>%f%d</Pattern>
+        <Separator />
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Name" DisplayName="SerialMessageSubjectName" Category="Subjects" />
+      </Expression>
+      <Expression xsi:type="rx:BehaviorSubject">
+        <Name>SerialMessages</Name>
+      </Expression>
+      <Expression xsi:type="WorkflowOutput" />
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="1" Label="Source1" />
+      <Edge From="2" To="4" Label="Source1" />
+      <Edge From="3" To="4" Label="Source2" />
+      <Edge From="4" To="6" Label="Source1" />
+      <Edge From="5" To="6" Label="Source2" />
+      <Edge From="6" To="7" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
