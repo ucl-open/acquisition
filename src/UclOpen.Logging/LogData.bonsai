@@ -109,7 +109,7 @@
               <Property Name="Selector" />
             </Expression>
             <Expression xsi:type="io:CsvWriter">
-              <io:Append>false</io:Append>
+              <io:Append>true</io:Append>
               <io:Overwrite>false</io:Overwrite>
               <io:Suffix>None</io:Suffix>
               <io:IncludeHeader>true</io:IncludeHeader>
