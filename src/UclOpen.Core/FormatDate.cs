@@ -1,10 +1,10 @@
-using Bonsai;
+﻿using Bonsai;
 using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Reactive.Linq;
 
-namespace Aeon.Acquisition
+namespace UclOpen.Core
 {
     [Combinator]
     [Description("Formats a date time into a string with no illegal path characters.")]

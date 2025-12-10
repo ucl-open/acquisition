@@ -2,10 +2,9 @@
 <WorkflowBuilder Version="2.9.0"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
-                 xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
+                 xmlns:p1="clr-namespace:UclOpen.Core;assembly=UclOpen.Core"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns="https://bonsai-rx.org/2018/workflow">
-  <Description>Logs a generic timestamped data stream into the base data log.</Description>
   <Workflow>
     <Nodes>
       <Expression xsi:type="WorkflowInput">
@@ -61,9 +60,7 @@
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="aeon:StripSubstring">
-                      <aeon:Separator>_</aeon:Separator>
-                    </Combinator>
+                    <Combinator xsi:type="p1:StripSubstring" />
                   </Expression>
                   <Expression xsi:type="ExternalizedMapping">
                     <Property Name="Value" DisplayName="Extension" Description="The file extension" />

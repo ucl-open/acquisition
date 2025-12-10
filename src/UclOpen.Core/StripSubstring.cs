@@ -1,10 +1,10 @@
-using Bonsai;
+﻿using Bonsai;
 using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Reactive.Linq;
 
-namespace Aeon.Acquisition
+namespace UclOpen.Core
 {
     [Combinator]
     [Description("Selects the substring preceding the first occurrence of the specified separator.")]
