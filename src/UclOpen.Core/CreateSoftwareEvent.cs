@@ -1,9 +1,10 @@
-using Bonsai;
+﻿using Bonsai;
 using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Reactive.Linq;
 using Bonsai.Harp;
+using UclOpen.Core.DataTypes;
 
 namespace UclOpen.Core
 {
