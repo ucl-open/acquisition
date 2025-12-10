@@ -1,8 +1,10 @@
 using Bonsai;
 using System;
 using System.ComponentModel;
+using System.Linq;
+using System.Reactive.Linq;
 
-namespace UclOpen.Core
+namespace Aeon.Acquisition
 {
     [Combinator]
     [Description("Selects the substring preceding the first occurrence of the specified separator.")]
@@ -10,11 +12,14 @@ namespace UclOpen.Core
     public class StripSubstring
     {
         public string Separator { get; set; }
-        
-        public IObservable<string> Process(IObservable<string> source);
-        public override bool Equals(object obj);
-        public override int GetHashCode();
-        public Type GetType();
-        public override string ToString();
+
+        public IObservable<string> Process(IObservable<string> source)
+        {
+            return source.Select(value =>
+            {
+                var parts = value.Split(new[] { Separator }, StringSplitOptions.RemoveEmptyEntries);
+                return parts.Length > 0 ? parts[0] : value;
+            });
+        }
     }
 }
