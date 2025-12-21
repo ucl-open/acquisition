@@ -43,11 +43,11 @@
         <Name>CameraTriggerEvents</Name>
       </Expression>
       <Expression xsi:type="Annotation">
-        <Text><![CDATA[Skips initial trigger to synchronise frame capture with trigger sequence in order to account of setup delays]]></Text>
+        <Text><![CDATA[Skips initial trigger to synchronise frame capture with trigger sequence in order to account of setup delays. This is only needed if the behavior board is set to dump it's registers, and should be sorted in the main logic of the workflow if that is the case. Typically only use dump registers for debugging, but can also be used as a log of the state of the device at initialization.]]></Text>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Skip">
-          <rx:Count>1</rx:Count>
+          <rx:Count>0</rx:Count>
         </Combinator>
       </Expression>
       <Expression xsi:type="Annotation">
@@ -75,7 +75,7 @@
         <Text><![CDATA[Publishes Harp compatible timestamped frame events for implementation into other workflows]]></Text>
       </Expression>
       <Expression xsi:type="rx:BehaviorSubject">
-        <Name>FrameEvents1</Name>
+        <Name>FrameEvents</Name>
       </Expression>
       <Expression xsi:type="WorkflowOutput" />
     </Nodes>
