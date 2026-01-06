@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>A package providing common video acquisition functionality for all UCL Open experiments.</Description>
+    <PackageTags>Bonsai Rx UclOpen Video</PackageTags>
+    <TargetFrameworks>net472</TargetFrameworks>
+    <VersionPrefix>0.1.2</VersionPrefix>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="**\*.bonsai" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bonsai.Spinnaker" Version="0.9.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UclOpen.Core\UclOpen.Core.csproj" />
+  </ItemGroup>
+
+</Project>
