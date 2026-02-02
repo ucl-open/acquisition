@@ -3,11 +3,11 @@
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:port="clr-namespace:Bonsai.IO.Ports;assembly=Bonsai.System"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
       <Expression xsi:type="ExternalizedMapping">
-        <Property Name="PortName" />
         <Property Name="BaudRate" />
         <Property Name="Encoding" />
         <Property Name="NewLine" />
@@ -28,7 +28,7 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="StringProperty">
-          <Value>Arduino</Value>
+          <Value>Scale</Value>
         </Combinator>
       </Expression>
       <Expression xsi:type="PropertyMapping">
@@ -36,12 +36,15 @@
           <Property Name="Name" />
         </PropertyMappings>
       </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="PortName" Description="The COM port for this serial device" Category="Connection" />
+      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="port:CreateSerialPort">
           <port:Name>SerialDevice</port:Name>
           <port:PortName />
           <port:BaudRate>9600</port:BaudRate>
-          <port:NewLine>\n</port:NewLine>
+          <port:NewLine>\r\n</port:NewLine>
           <port:Parity>None</port:Parity>
           <port:ParityReplace>63</port:ParityReplace>
           <port:DataBits>8</port:DataBits>
@@ -107,17 +110,29 @@
       <Expression xsi:type="rx:BehaviorSubject">
         <Name>SerialMessages</Name>
       </Expression>
+      <Expression xsi:type="rx:PublishSubject" TypeArguments="sys:String">
+        <rx:Name>SerialCommands</rx:Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="port:SerialWriteLine">
+          <port:PortName>Scale</port:PortName>
+          <port:NewLine>\r\n</port:NewLine>
+        </Combinator>
+      </Expression>
     </Nodes>
     <Edges>
-      <Edge From="0" To="4" Label="Source1" />
+      <Edge From="0" To="5" Label="Source1" />
       <Edge From="1" To="2" Label="Source1" />
       <Edge From="2" To="3" Label="Source1" />
-      <Edge From="2" To="5" Label="Source2" />
-      <Edge From="3" To="4" Label="Source2" />
-      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="2" To="6" Label="Source2" />
+      <Edge From="3" To="5" Label="Source2" />
+      <Edge From="4" To="5" Label="Source3" />
+      <Edge From="4" To="11" Label="Source2" />
       <Edge From="5" To="6" Label="Source1" />
-      <Edge From="6" To="8" Label="Source1" />
-      <Edge From="7" To="8" Label="Source2" />
+      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="7" To="9" Label="Source1" />
+      <Edge From="8" To="9" Label="Source2" />
+      <Edge From="10" To="11" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
