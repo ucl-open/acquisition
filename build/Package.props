@@ -1,10 +1,9 @@
 <Project>
   <PropertyGroup>
-    <Authors></Authors>
-    <Copyright>Copyright © </Copyright>
-    <PackageProjectUrl></PackageProjectUrl>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageLicenseFile></PackageLicenseFile>
-    <PackageIcon></PackageIcon>
+    <PackageTags>Bonsai Rx UclOpen</PackageTags>
+    <PackageProjectUrl>https://ucl-open.github.io/acquisition</PackageProjectUrl>
+
+    <Authors>University College London</Authors>
+    <Copyright>Copyright © University College London and Contributors</Copyright>
   </PropertyGroup>
 </Project>
