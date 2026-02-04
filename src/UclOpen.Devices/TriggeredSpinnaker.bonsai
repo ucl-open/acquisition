@@ -30,8 +30,10 @@
       <Expression xsi:type="Annotation">
         <Text><![CDATA[Implements zero-based indexing of camera frames]]></Text>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:ElementIndex" />
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="rx:ElementIndex" />
+        </Builder>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="Name" DisplayName="CameraTriggerEventsSubjectName" Description="The name of the subject carrying trigger events from a camera controller or behavior board. " Category="Subjects" />
