@@ -1,8 +1,6 @@
 # acquisition
 
-This repository provides a toolkit of **Bonsai-based workflows and operators for hardware control and data acquisition** used in the `ucl-open` ecosystem.
-
-Its purpose is to provide a common acquisition layer that sits between **rig definitions** and **experiment repositories**, turning declarative descriptions of hardware into reproducible, executable acquisition pipelines.
+This repository provides a toolkit of Bonsai-based workflows and operators for hardware control and data acquisition in the `ucl-open` ecosystem. 
 
 ---
 
@@ -22,9 +20,8 @@ In general, lab members and experimentalists will not work directly on this repo
 
 `acquisition` provides:
 
-- A **catalogue of reusable Bonsai workflows** for common acquisition patterns
-- **Operators and abstractions** for interfacing with experimental hardware
-- A **stable acquisition layer** that experiments can rely on for data collection
+- Reusable Bonsai workflows for common acquisition patterns
+- Operators and abstractions for interfacing with hardware
 
 The repository focuses on *how data is acquired*, not on *what an experiment does with that data*.
 
@@ -80,11 +77,9 @@ If you find yourself copying workflows out of this repository, you are most like
 
 In particular:
 
-- Acquisition workflows assume the **rig contracts** defined in `ucl-open-rigs`
+- Workflows assume the rig contracts defined in `ucl-open-rigs`
 - Device names, channels, and capabilities are resolved via rig definitions
-- Changes to physical hardware are handled by updating the rig, not by editing workflows
-
-This keeps acquisition code portable across rigs.
+- Changes to hardware or wiring are handled by updating the rig, not by editing workflows
 
 ---
 
@@ -102,13 +97,22 @@ Typical usage looks like this:
 
 ## Versioning and dependency locking
 
-`acquisition` is versioned and intended to be **locked by downstream repositories**.
-
 Typical practice is:
 
-- Experiment repositories pin specific versions (tags or commits) of `acquisition`
-- Versions are kept in sync with compatible versions of `ucl-open-rigs`
+- Experiment repositories lock specific versions (tags or commits) against **ucl-open-rigs**
 - Updates are pulled deliberately and tested against known rigs
 - Breaking changes require an explicit version bump
 
-This ensures acquisition behaviour remains reproducible over time and consistent with historical data.
+This ensures acquisition behaviour remains reproducible and consistent with historical data.
+
+---
+
+## Using this repository
+
+You typically work directly with this repository only when:
+
+- Adding new reusable acquisition workflows or operators
+- Extending support for new classes of hardware
+- Improving shared abstractions used across labs
+
+If you find yourself copying workflows into experiment repositories, there is usually something wrong.
