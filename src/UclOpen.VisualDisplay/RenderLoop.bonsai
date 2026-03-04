@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.9.0"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+                 xmlns:p1="clr-namespace:UclOpen.Core.DataTypes;assembly=UclOpen.Core"
+                 xmlns:gl="clr-namespace:Bonsai.Shaders;assembly=Bonsai.Shaders"
+                 xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
+                 xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Name" DisplayName="DisplayCalibrationsSubjectName" Category="SubjectNames" />
+      </Expression>
+      <Expression xsi:type="rx:BehaviorSubject" TypeArguments="scg:IList(p1:DisplayCalibration)">
+        <rx:Name>DisplayCalibrations</rx:Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="gl:RenderFrame" />
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Name" DisplayName="RenderFrameSubjectName" Category="SubjectNames" />
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>RenderFrame</Name>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Eye" Category="CubemapSettings" />
+        <Property Name="NearClip" Category="CubemapSettings" />
+        <Property Name="FarClip" Category="CubemapSettings" />
+        <Property Name="Light" Category="CubemapSettings" />
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="BonVision:Environment.CubemapView.bonsai">
+        <Eye>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>0</Z>
+        </Eye>
+        <NearClip>0.1</NearClip>
+        <FarClip>1000</FarClip>
+        <Light>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>0</Z>
+        </Light>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>ViewMatrix</Selector>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="gl:RotateY">
+          <gl:Order>Append</gl:Order>
+          <gl:Angle>-3.14159274</gl:Angle>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Zip" />
+      </Expression>
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Expression>new(
+Item1 as ViewMatrix,
+Item2.ProjectionMatrix as ProjectionMatrix,
+Item2.Light as Light)</scr:Expression>
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>Draw3DStim</Name>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="ClearColor" Category="CubemapSettings" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="gl:RenderCubemap">
+          <gl:RenderState />
+          <gl:ClearColor>Gray</gl:ClearColor>
+          <gl:ClearMask>DepthBufferBit ColorBufferBit</gl:ClearMask>
+          <gl:FaceSize xsi:nil="true" />
+          <gl:InternalFormat>Rgb</gl:InternalFormat>
+          <gl:MinFilter>Linear</gl:MinFilter>
+          <gl:MagFilter>Linear</gl:MagFilter>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>RenderCubemap</Name>
+      </Expression>
+      <Expression xsi:type="WorkflowOutput" />
+      <Expression xsi:type="SubscribeSubject">
+        <Name>DisplayCalibrations</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Merge" />
+      </Expression>
+      <Expression xsi:type="rx:SelectMany">
+        <Name>CreateDisplay</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Intrinsics</Selector>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Extrinsics</Selector>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Rotation</Selector>
+            </Expression>
+            <Expression xsi:type="InputMapping">
+              <PropertyMappings>
+                <Property Name="X" Selector="X" />
+                <Property Name="Y" Selector="Y" />
+                <Property Name="Z" Selector="Z" />
+              </PropertyMappings>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="cv:CreatePoint3d">
+                <cv:X>0</cv:X>
+                <cv:Y>0</cv:Y>
+                <cv:Z>0</cv:Z>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Translation</Selector>
+            </Expression>
+            <Expression xsi:type="InputMapping">
+              <PropertyMappings>
+                <Property Name="X" Selector="X" />
+                <Property Name="Y" Selector="Y" />
+                <Property Name="Z" Selector="Z" />
+              </PropertyMappings>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="cv:CreatePoint3d">
+                <cv:X>0</cv:X>
+                <cv:Y>0</cv:Y>
+                <cv:Z>0</cv:Z>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Viewport</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Zip" />
+            </Expression>
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Expression>new(
+  it.Item1 as Intrinsics,
+  it.Item2 as Rotation,
+  it.Item3 as Translation,
+  it.Item4 as Viewport
+)</scr:Expression>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Take">
+                <rx:Count>1</rx:Count>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="rx:AsyncSubject">
+              <Name>DisplayCalibration</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>RenderCubemap</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>DisplayCalibration</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:CombineLatest" />
+            </Expression>
+            <Expression xsi:type="InputMapping">
+              <PropertyMappings>
+                <Property Name="Width" Selector="Item2.Intrinsics.DisplayWidth" />
+                <Property Name="Height" Selector="Item2.Intrinsics.DisplayHeight" />
+                <Property Name="Rotation" Selector="Item2.Rotation" />
+                <Property Name="Translation" Selector="Item2.Translation" />
+              </PropertyMappings>
+              <Selector>Item1</Selector>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="BonVision:Environment.ViewWindow.bonsai">
+              <Width>20</Width>
+              <Height>15</Height>
+              <Rotation>
+                <X>0</X>
+                <Y>0</Y>
+                <Z>0</Z>
+              </Rotation>
+              <Translation>
+                <X>0</X>
+                <Y>0</Y>
+                <Z>0</Z>
+              </Translation>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>DisplayCalibration</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:CombineLatest" />
+            </Expression>
+            <Expression xsi:type="InputMapping">
+              <PropertyMappings>
+                <Property Name="X" Selector="Item2.Viewport.X" />
+                <Property Name="Y" Selector="Item2.Viewport.Y" />
+                <Property Name="Width" Selector="Item2.Viewport.Width" />
+                <Property Name="Height" Selector="Item2.Viewport.Height" />
+              </PropertyMappings>
+              <Selector>Item1</Selector>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="BonVision:Environment.DrawViewport.bonsai">
+              <X>0.8</X>
+              <Y>0</Y>
+              <Width>0.2</Width>
+              <Height>1</Height>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="0" To="2" Label="Source1" />
+            <Edge From="0" To="9" Label="Source1" />
+            <Edge From="1" To="10" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="2" To="6" Label="Source1" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="5" To="10" Label="Source2" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="8" To="10" Label="Source3" />
+            <Edge From="9" To="10" Label="Source4" />
+            <Edge From="10" To="11" Label="Source1" />
+            <Edge From="11" To="12" Label="Source1" />
+            <Edge From="12" To="13" Label="Source1" />
+            <Edge From="14" To="16" Label="Source1" />
+            <Edge From="15" To="16" Label="Source2" />
+            <Edge From="16" To="17" Label="Source1" />
+            <Edge From="17" To="18" Label="Source1" />
+            <Edge From="18" To="20" Label="Source1" />
+            <Edge From="19" To="20" Label="Source2" />
+            <Edge From="20" To="21" Label="Source1" />
+            <Edge From="21" To="22" Label="Source1" />
+            <Edge From="22" To="23" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="1" Label="Source1" />
+      <Edge From="2" To="4" Label="Source1" />
+      <Edge From="3" To="4" Label="Source2" />
+      <Edge From="4" To="6" Label="Source1" />
+      <Edge From="5" To="6" Label="Source2" />
+      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="6" To="9" Label="Source2" />
+      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="9" To="10" Label="Source1" />
+      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="11" To="13" Label="Source1" />
+      <Edge From="12" To="13" Label="Source2" />
+      <Edge From="13" To="14" Label="Source1" />
+      <Edge From="14" To="15" Label="Source1" />
+      <Edge From="16" To="17" Label="Source1" />
+      <Edge From="17" To="18" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>

@@ -9,6 +9,520 @@ namespace UclOpen.Core.DataTypes
 {
     #pragma warning disable // Disable all warnings
 
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class DataTypes
+    {
+    
+        private Vector3 _vector3;
+    
+        private Vector2 _vector2;
+    
+        private SoftwareEvent _softwareEvent;
+    
+        private SpoutRigPosition _spoutRigPosition;
+    
+        public DataTypes()
+        {
+            _vector3 = new Vector3();
+            _vector2 = new Vector2();
+            _softwareEvent = new SoftwareEvent();
+            _spoutRigPosition = new SpoutRigPosition();
+        }
+    
+        protected DataTypes(DataTypes other)
+        {
+            _vector3 = other._vector3;
+            _vector2 = other._vector2;
+            _softwareEvent = other._softwareEvent;
+            _spoutRigPosition = other._spoutRigPosition;
+        }
+    
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("vector3", Required=Newtonsoft.Json.Required.Always)]
+        public Vector3 Vector3
+        {
+            get
+            {
+                return _vector3;
+            }
+            set
+            {
+                _vector3 = value;
+            }
+        }
+    
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("vector2", Required=Newtonsoft.Json.Required.Always)]
+        public Vector2 Vector2
+        {
+            get
+            {
+                return _vector2;
+            }
+            set
+            {
+                _vector2 = value;
+            }
+        }
+    
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("softwareEvent", Required=Newtonsoft.Json.Required.Always)]
+        public SoftwareEvent SoftwareEvent
+        {
+            get
+            {
+                return _softwareEvent;
+            }
+            set
+            {
+                _softwareEvent = value;
+            }
+        }
+    
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("spoutRigPosition", Required=Newtonsoft.Json.Required.Always)]
+        public SpoutRigPosition SpoutRigPosition
+        {
+            get
+            {
+                return _spoutRigPosition;
+            }
+            set
+            {
+                _spoutRigPosition = value;
+            }
+        }
+    
+        public System.IObservable<DataTypes> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new DataTypes(this)));
+        }
+    
+        public System.IObservable<DataTypes> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new DataTypes(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("Vector3 = " + _vector3 + ", ");
+            stringBuilder.Append("Vector2 = " + _vector2 + ", ");
+            stringBuilder.Append("SoftwareEvent = " + _softwareEvent + ", ");
+            stringBuilder.Append("SpoutRigPosition = " + _spoutRigPosition);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class DisplayCalibration
+    {
+    
+        private DisplayIntrinsics _intrinsics;
+    
+        private DisplayExtrinsics _extrinsics;
+    
+        private Viewport _viewport;
+    
+        public DisplayCalibration()
+        {
+            _intrinsics = new DisplayIntrinsics();
+            _extrinsics = new DisplayExtrinsics();
+            _viewport = new Viewport();
+        }
+    
+        protected DisplayCalibration(DisplayCalibration other)
+        {
+            _intrinsics = other._intrinsics;
+            _extrinsics = other._extrinsics;
+            _viewport = other._viewport;
+        }
+    
+        /// <summary>
+        /// Intrinsics
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("intrinsics")]
+        [System.ComponentModel.DescriptionAttribute("Intrinsics")]
+        public DisplayIntrinsics Intrinsics
+        {
+            get
+            {
+                return _intrinsics;
+            }
+            set
+            {
+                _intrinsics = value;
+            }
+        }
+    
+        /// <summary>
+        /// Extrinsics
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("extrinsics")]
+        [System.ComponentModel.DescriptionAttribute("Extrinsics")]
+        public DisplayExtrinsics Extrinsics
+        {
+            get
+            {
+                return _extrinsics;
+            }
+            set
+            {
+                _extrinsics = value;
+            }
+        }
+    
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("viewport")]
+        public Viewport Viewport
+        {
+            get
+            {
+                return _viewport;
+            }
+            set
+            {
+                _viewport = value;
+            }
+        }
+    
+        public System.IObservable<DisplayCalibration> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new DisplayCalibration(this)));
+        }
+    
+        public System.IObservable<DisplayCalibration> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new DisplayCalibration(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("Intrinsics = " + _intrinsics + ", ");
+            stringBuilder.Append("Extrinsics = " + _extrinsics + ", ");
+            stringBuilder.Append("Viewport = " + _viewport);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class DisplayExtrinsics
+    {
+    
+        private Vector3 _rotation;
+    
+        private Vector3 _translation;
+    
+        public DisplayExtrinsics()
+        {
+            _rotation = new Vector3();
+            _translation = new Vector3();
+        }
+    
+        protected DisplayExtrinsics(DisplayExtrinsics other)
+        {
+            _rotation = other._rotation;
+            _translation = other._translation;
+        }
+    
+        /// <summary>
+        /// Rotation vector (radians)
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("rotation")]
+        [System.ComponentModel.DescriptionAttribute("Rotation vector (radians)")]
+        public Vector3 Rotation
+        {
+            get
+            {
+                return _rotation;
+            }
+            set
+            {
+                _rotation = value;
+            }
+        }
+    
+        /// <summary>
+        /// Translation (in cm)
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("translation")]
+        [System.ComponentModel.DescriptionAttribute("Translation (in cm)")]
+        public Vector3 Translation
+        {
+            get
+            {
+                return _translation;
+            }
+            set
+            {
+                _translation = value;
+            }
+        }
+    
+        public System.IObservable<DisplayExtrinsics> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new DisplayExtrinsics(this)));
+        }
+    
+        public System.IObservable<DisplayExtrinsics> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new DisplayExtrinsics(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("Rotation = " + _rotation + ", ");
+            stringBuilder.Append("Translation = " + _translation);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class DisplayIntrinsics
+    {
+    
+        private int _frameWidth;
+    
+        private int _frameHeight;
+    
+        private double _displayWidth;
+    
+        private double _displayHeight;
+    
+        public DisplayIntrinsics()
+        {
+            _frameWidth = 1920;
+            _frameHeight = 1080;
+            _displayWidth = 20D;
+            _displayHeight = 15D;
+        }
+    
+        protected DisplayIntrinsics(DisplayIntrinsics other)
+        {
+            _frameWidth = other._frameWidth;
+            _frameHeight = other._frameHeight;
+            _displayWidth = other._displayWidth;
+            _displayHeight = other._displayHeight;
+        }
+    
+        /// <summary>
+        /// Frame width (px)
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("frameWidth")]
+        [System.ComponentModel.DescriptionAttribute("Frame width (px)")]
+        public int FrameWidth
+        {
+            get
+            {
+                return _frameWidth;
+            }
+            set
+            {
+                _frameWidth = value;
+            }
+        }
+    
+        /// <summary>
+        /// Frame height (px)
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("frameHeight")]
+        [System.ComponentModel.DescriptionAttribute("Frame height (px)")]
+        public int FrameHeight
+        {
+            get
+            {
+                return _frameHeight;
+            }
+            set
+            {
+                _frameHeight = value;
+            }
+        }
+    
+        /// <summary>
+        /// Display width (cm)
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("displayWidth")]
+        [System.ComponentModel.DescriptionAttribute("Display width (cm)")]
+        public double DisplayWidth
+        {
+            get
+            {
+                return _displayWidth;
+            }
+            set
+            {
+                _displayWidth = value;
+            }
+        }
+    
+        /// <summary>
+        /// Display width (cm)
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("displayHeight")]
+        [System.ComponentModel.DescriptionAttribute("Display width (cm)")]
+        public double DisplayHeight
+        {
+            get
+            {
+                return _displayHeight;
+            }
+            set
+            {
+                _displayHeight = value;
+            }
+        }
+    
+        public System.IObservable<DisplayIntrinsics> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new DisplayIntrinsics(this)));
+        }
+    
+        public System.IObservable<DisplayIntrinsics> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new DisplayIntrinsics(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("FrameWidth = " + _frameWidth + ", ");
+            stringBuilder.Append("FrameHeight = " + _frameHeight + ", ");
+            stringBuilder.Append("DisplayWidth = " + _displayWidth + ", ");
+            stringBuilder.Append("DisplayHeight = " + _displayHeight);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class Displays
+    {
+    
+        private DisplayCalibration _displayCalibration;
+    
+        public Displays()
+        {
+            _displayCalibration = new DisplayCalibration();
+        }
+    
+        protected Displays(Displays other)
+        {
+            _displayCalibration = other._displayCalibration;
+        }
+    
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("displayCalibration", Required=Newtonsoft.Json.Required.Always)]
+        public DisplayCalibration DisplayCalibration
+        {
+            get
+            {
+                return _displayCalibration;
+            }
+            set
+            {
+                _displayCalibration = value;
+            }
+        }
+    
+        public System.IObservable<Displays> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new Displays(this)));
+        }
+    
+        public System.IObservable<Displays> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new Displays(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("DisplayCalibration = " + _displayCalibration);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
     /// <summary>
     /// A software event is a generic event that can be used to track any event that occurs in the software.
     /// </summary>
@@ -187,6 +701,232 @@ namespace UclOpen.Core.DataTypes
     }
 
 
+    /// <summary>
+    /// Dictionary of named absolute positions, e.g.:
+    ///  home, both_in, both_out
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.ComponentModel.DescriptionAttribute("Dictionary of named absolute positions, e.g.:\n  home, both_in, both_out")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class SpoutRigPosition
+    {
+    
+        private System.Collections.Generic.Dictionary<string, StepperPositions> _positions;
+    
+        public SpoutRigPosition()
+        {
+        }
+    
+        protected SpoutRigPosition(SpoutRigPosition other)
+        {
+            _positions = other._positions;
+        }
+    
+        /// <summary>
+        /// Named absolute positions of the lick spout stage stepper rig, keyed by a string identifier.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("positions")]
+        [System.ComponentModel.DescriptionAttribute("Named absolute positions of the lick spout stage stepper rig, keyed by a string i" +
+            "dentifier.")]
+        public System.Collections.Generic.Dictionary<string, StepperPositions> Positions
+        {
+            get
+            {
+                return _positions;
+            }
+            set
+            {
+                _positions = value;
+            }
+        }
+    
+        public System.IObservable<SpoutRigPosition> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new SpoutRigPosition(this)));
+        }
+    
+        public System.IObservable<SpoutRigPosition> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new SpoutRigPosition(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("Positions = " + _positions);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
+    /// <summary>
+    /// Absolute target position for the 5-axis spout rig, expressed in task-relative axes.
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.ComponentModel.DescriptionAttribute("Absolute target position for the 5-axis spout rig, expressed in task-relative axe" +
+        "s.")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class StepperPositions
+    {
+    
+        private int _leftElevation;
+    
+        private int _rightElevation;
+    
+        private int _rightRadial;
+    
+        private int _leftRadial;
+    
+        private int _baseTransverse;
+    
+        public StepperPositions()
+        {
+        }
+    
+        protected StepperPositions(StepperPositions other)
+        {
+            _leftElevation = other._leftElevation;
+            _rightElevation = other._rightElevation;
+            _rightRadial = other._rightRadial;
+            _leftRadial = other._leftRadial;
+            _baseTransverse = other._baseTransverse;
+        }
+    
+        /// <summary>
+        /// Left spout elevation axis absolute position (steps). Maps to motor 1
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("leftElevation", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("Left spout elevation axis absolute position (steps). Maps to motor 1")]
+        public int LeftElevation
+        {
+            get
+            {
+                return _leftElevation;
+            }
+            set
+            {
+                _leftElevation = value;
+            }
+        }
+    
+        /// <summary>
+        /// Right spout elevation axis absolute position (steps). Maps to motor 2
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("rightElevation", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("Right spout elevation axis absolute position (steps). Maps to motor 2")]
+        public int RightElevation
+        {
+            get
+            {
+                return _rightElevation;
+            }
+            set
+            {
+                _rightElevation = value;
+            }
+        }
+    
+        /// <summary>
+        /// Right spout radial axis (in/out) absolute position (steps). Maps to motor 3
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("rightRadial", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("Right spout radial axis (in/out) absolute position (steps). Maps to motor 3")]
+        public int RightRadial
+        {
+            get
+            {
+                return _rightRadial;
+            }
+            set
+            {
+                _rightRadial = value;
+            }
+        }
+    
+        /// <summary>
+        /// Left spout radial axis (in/out) absolute position (steps). Maps to motor 4
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("leftRadial", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("Left spout radial axis (in/out) absolute position (steps). Maps to motor 4")]
+        public int LeftRadial
+        {
+            get
+            {
+                return _leftRadial;
+            }
+            set
+            {
+                _leftRadial = value;
+            }
+        }
+    
+        /// <summary>
+        /// Base transverse axis absolute position (steps). Maps to motor 5
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("baseTransverse", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("Base transverse axis absolute position (steps). Maps to motor 5")]
+        public int BaseTransverse
+        {
+            get
+            {
+                return _baseTransverse;
+            }
+            set
+            {
+                _baseTransverse = value;
+            }
+        }
+    
+        public System.IObservable<StepperPositions> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new StepperPositions(this)));
+        }
+    
+        public System.IObservable<StepperPositions> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new StepperPositions(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("LeftElevation = " + _leftElevation + ", ");
+            stringBuilder.Append("RightElevation = " + _rightElevation + ", ");
+            stringBuilder.Append("RightRadial = " + _rightRadial + ", ");
+            stringBuilder.Append("LeftRadial = " + _leftRadial + ", ");
+            stringBuilder.Append("BaseTransverse = " + _baseTransverse);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0)")]
     [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public enum TimestampSource
@@ -203,6 +943,92 @@ namespace UclOpen.Core.DataTypes
     
         [System.Runtime.Serialization.EnumMemberAttribute(Value="arduino")]
         Arduino = 3,
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class Vector2
+    {
+    
+        private double _x;
+    
+        private double _y;
+    
+        public Vector2()
+        {
+        }
+    
+        protected Vector2(Vector2 other)
+        {
+            _x = other._x;
+            _y = other._y;
+        }
+    
+        /// <summary>
+        /// X coordinate of the point.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("x", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("X coordinate of the point.")]
+        public double X
+        {
+            get
+            {
+                return _x;
+            }
+            set
+            {
+                _x = value;
+            }
+        }
+    
+        /// <summary>
+        /// Y coordinate of the point.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("y", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("Y coordinate of the point.")]
+        public double Y
+        {
+            get
+            {
+                return _y;
+            }
+            set
+            {
+                _y = value;
+            }
+        }
+    
+        public System.IObservable<Vector2> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new Vector2(this)));
+        }
+    
+        public System.IObservable<Vector2> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new Vector2(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("X = " + _x + ", ");
+            stringBuilder.Append("Y = " + _y);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
     }
 
 
@@ -313,6 +1139,162 @@ namespace UclOpen.Core.DataTypes
     }
 
 
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class Viewport
+    {
+    
+        private double _height;
+    
+        private double _width;
+    
+        private double _x;
+    
+        private double _y;
+    
+        public Viewport()
+        {
+        }
+    
+        protected Viewport(Viewport other)
+        {
+            _height = other._height;
+            _width = other._width;
+            _x = other._x;
+            _y = other._y;
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("height", Required=Newtonsoft.Json.Required.Always)]
+        public double Height
+        {
+            get
+            {
+                return _height;
+            }
+            set
+            {
+                _height = value;
+            }
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("width", Required=Newtonsoft.Json.Required.Always)]
+        public double Width
+        {
+            get
+            {
+                return _width;
+            }
+            set
+            {
+                _width = value;
+            }
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("x", Required=Newtonsoft.Json.Required.Always)]
+        public double X
+        {
+            get
+            {
+                return _x;
+            }
+            set
+            {
+                _x = value;
+            }
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("y", Required=Newtonsoft.Json.Required.Always)]
+        public double Y
+        {
+            get
+            {
+                return _y;
+            }
+            set
+            {
+                _y = value;
+            }
+        }
+    
+        public System.IObservable<Viewport> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new Viewport(this)));
+        }
+    
+        public System.IObservable<Viewport> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new Viewport(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("Height = " + _height + ", ");
+            stringBuilder.Append("Width = " + _width + ", ");
+            stringBuilder.Append("X = " + _x + ", ");
+            stringBuilder.Append("Y = " + _y);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class Json
+    {
+    
+        public Json()
+        {
+        }
+    
+        protected Json(Json other)
+        {
+        }
+    
+        public System.IObservable<Json> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new Json(this)));
+        }
+    
+        public System.IObservable<Json> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new Json(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            return false;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
     /// <summary>
     /// Serializes a sequence of data model objects into JSON strings.
     /// </summary>
@@ -331,14 +1313,64 @@ namespace UclOpen.Core.DataTypes
             return System.Reactive.Linq.Observable.Select(source, value => Newtonsoft.Json.JsonConvert.SerializeObject(value, formatting));
         }
 
+        public System.IObservable<string> Process(System.IObservable<DataTypes> source)
+        {
+            return Process<DataTypes>(source);
+        }
+
+        public System.IObservable<string> Process(System.IObservable<DisplayCalibration> source)
+        {
+            return Process<DisplayCalibration>(source);
+        }
+
+        public System.IObservable<string> Process(System.IObservable<DisplayExtrinsics> source)
+        {
+            return Process<DisplayExtrinsics>(source);
+        }
+
+        public System.IObservable<string> Process(System.IObservable<DisplayIntrinsics> source)
+        {
+            return Process<DisplayIntrinsics>(source);
+        }
+
+        public System.IObservable<string> Process(System.IObservable<Displays> source)
+        {
+            return Process<Displays>(source);
+        }
+
         public System.IObservable<string> Process(System.IObservable<SoftwareEvent> source)
         {
             return Process<SoftwareEvent>(source);
         }
 
+        public System.IObservable<string> Process(System.IObservable<SpoutRigPosition> source)
+        {
+            return Process<SpoutRigPosition>(source);
+        }
+
+        public System.IObservable<string> Process(System.IObservable<StepperPositions> source)
+        {
+            return Process<StepperPositions>(source);
+        }
+
+        public System.IObservable<string> Process(System.IObservable<Vector2> source)
+        {
+            return Process<Vector2>(source);
+        }
+
         public System.IObservable<string> Process(System.IObservable<Vector3> source)
         {
             return Process<Vector3>(source);
+        }
+
+        public System.IObservable<string> Process(System.IObservable<Viewport> source)
+        {
+            return Process<Viewport>(source);
+        }
+
+        public System.IObservable<string> Process(System.IObservable<Json> source)
+        {
+            return Process<Json>(source);
         }
     }
 
@@ -350,14 +1382,24 @@ namespace UclOpen.Core.DataTypes
     [System.ComponentModel.DescriptionAttribute("Deserializes a sequence of JSON strings into data model objects.")]
     [System.ComponentModel.DefaultPropertyAttribute("Type")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Transform)]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<DataTypes>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<DisplayCalibration>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<DisplayExtrinsics>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<DisplayIntrinsics>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Displays>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<SoftwareEvent>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<SpoutRigPosition>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<StepperPositions>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Vector2>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Vector3>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Viewport>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Json>))]
     public partial class DeserializeFromJson : Bonsai.Expressions.SingleArgumentExpressionBuilder
     {
     
         public DeserializeFromJson()
         {
-            Type = new Bonsai.Expressions.TypeMapping<SoftwareEvent>();
+            Type = new Bonsai.Expressions.TypeMapping<Json>();
         }
 
         public Bonsai.Expressions.TypeMapping Type { get; set; }

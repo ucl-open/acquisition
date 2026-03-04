@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Bonsai.Core" Version="2.9.0" />
+    <PackageReference Include="BonVision" Version="0.11.0" />
   </ItemGroup>
 
   <ItemGroup>
