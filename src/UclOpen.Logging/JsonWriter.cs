@@ -17,7 +17,9 @@ namespace UclOpen.Logging
 
         protected override void Write(StreamWriter writer, string input)
         {
-            writer.WriteLine(input);
+            var parsed = JToken.Parse(input);
+            var formatted = parsed.ToString(Formatting.Indented);
+            writer.WriteLine(formatted);
         }
     }
 }
