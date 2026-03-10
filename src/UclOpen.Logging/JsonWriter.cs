@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bonsai.IO;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace UclOpen.Logging
 {
