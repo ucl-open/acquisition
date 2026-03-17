@@ -1,5 +1,5 @@
-*.editor
-*.layout
+.vs/
+**/.bonsai/Bonsai.exe*
+**/.bonsai/Packages/
 **/.bonsai/Settings/
-**/obj/
-**/bin/
+/artifacts/
